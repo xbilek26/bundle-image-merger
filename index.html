@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg">
+    <title>Bundle Image Merger</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="product-container">
+            <label for="code1">Vlož kód prvního produktu:</label>
+            <input type="text" id="code1" placeholder="Např. LGPR093">
+            <input type="file" id="file1" accept="image/*">
+        </div>
+        <div class="product-container">
+            <label for="code2">Vlož kód druhého produktu:</label>
+            <input type="text" id="code2" placeholder="Např. LGSU018">
+            <input type="file" id="file2" accept="image/*">
+        </div>
+        <button onclick="mergeImages()">Sloučit obrázky</button>
+        <br>
+        <img id="result-image" alt="Merged Image" style="display: none;">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
