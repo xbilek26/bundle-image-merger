@@ -50,7 +50,7 @@ async function trimImage(img) {
     const trimmedImg = new Image();
     trimmedImg.src = trimmedCanvas.toDataURL('image/png');
 
-    return trimmedImg;
+    return { image: trimmedImg, width: trimmedWidth, height: trimmedHeight };
 }
 
 async function loadImageOrFile(code, file) {
@@ -61,8 +61,8 @@ async function loadImageOrFile(code, file) {
             img.crossOrigin = 'Anonymous';
             img.onload = async () => {
                 try {
-                    const trimmedImg = await trimImage(img);
-                    resolve(trimmedImg);
+                    const { image, width, height } = await trimImage(img);
+                    resolve({ image, width, height });
                 } catch (err) {
                     reject(err);
                 }
@@ -76,8 +76,8 @@ async function loadImageOrFile(code, file) {
                 img.crossOrigin = 'Anonymous';
                 img.onload = async () => {
                     try {
-                        const trimmedImg = await trimImage(img);
-                        resolve(trimmedImg);
+                        const { image, width, height } = await trimImage(img);
+                        resolve({ image, width, height });
                     } catch (err) {
                         reject(err);
                     }
@@ -101,26 +101,33 @@ async function mergeImages() {
     const file2 = document.getElementById('file2').files[0];
 
     try {
-        const [img1, img2] = await Promise.all([
+        const [img1Data, img2Data] = await Promise.all([
             loadImageOrFile(code1, file1),
             loadImageOrFile(code2, file2)
         ]);
 
-        const maxHeight = Math.max(img1.height, img2.height);
-        const totalWidth = img1.width + img2.width + 10;
+        const img1 = img1Data.image;
+        const img2 = img2Data.image;
+
+        const targetHeight = Math.max(img1Data.height, img2Data.height);
+
+        const img1WidthScaled = (img1Data.width / img1Data.height) * targetHeight;
+        const img2WidthScaled = (img2Data.width / img2Data.height) * targetHeight;
+
+        const totalWidth = img1WidthScaled + img2WidthScaled + 10;
 
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
 
         canvas.width = totalWidth;
-        canvas.height = maxHeight;
+        canvas.height = targetHeight;
 
-        context.drawImage(img1, 0, 0, img1.width, maxHeight);
+        context.drawImage(img1, 0, 0, img1WidthScaled, targetHeight);
 
         context.fillStyle = 'white';
-        context.fillRect(img1.width, 0, 10, maxHeight);
+        context.fillRect(img1WidthScaled, 0, 10, targetHeight);
 
-        context.drawImage(img2, img1.width + 10, 0, img2.width, maxHeight);
+        context.drawImage(img2, img1WidthScaled + 10, 0, img2WidthScaled, targetHeight);
 
         const resultImage = canvas.toDataURL('image/png');
         const resultImageElement = document.getElementById('result-image');
