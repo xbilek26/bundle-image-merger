@@ -58,14 +58,14 @@ button {
     margin: 20px auto 0 auto;
     border: none;
     border-radius: 5px;
-    background-color: #6CA0F6;
+    background-color: #1ab394;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
 }
 
 button:hover {
-    background-color: #5A8BCC;
+    background-color: #18a689;
 }
 
 #result-image {
