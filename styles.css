@@ -33,25 +33,29 @@ label {
     color: #ddd;
 }
 
+.input-group {
+    flex: 1;
+    margin: 0 10px;
+}
+
 input[type="text"] {
     width: calc(100% - 20px);
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #555;
-    margin-bottom: 10px;
     background-color: #444;
     color: #ddd;
 }
 
 input[type="file"] {
     margin-top: 10px;
-    margin-bottom: 20px;
     color: #ddd;
 }
 
 button {
-    display: inline-block;
+    display: block;
     padding: 10px 20px;
+    margin: 20px auto 0 auto;
     border: none;
     border-radius: 5px;
     background-color: #6CA0F6;
@@ -61,7 +65,7 @@ button {
 }
 
 button:hover {
-    background-color: #5b8ddc;
+    background-color: #5A8BCC;
 }
 
 #result-image {
@@ -73,5 +77,9 @@ button:hover {
 }
 
 .product-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
+    padding: 0 10px;
 }
