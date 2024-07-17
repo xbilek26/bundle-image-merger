@@ -12,18 +12,20 @@
 <body>
     <div class="container">
         <div class="product-container">
-            <label for="code1">Vlož kód prvního produktu:</label>
-            <input type="text" id="code1" placeholder="Např. LGPR093">
-            <input type="file" id="file1" accept="image/*">
-        </div>
-        <div class="product-container">
-            <label for="code2">Vlož kód druhého produktu:</label>
-            <input type="text" id="code2" placeholder="Např. LGSU018">
-            <input type="file" id="file2" accept="image/*">
+            <div class="input-group">
+                <label for="code1">Vlož kód prvního produktu:</label>
+                <input type="text" id="code1" placeholder="Např. LGPR093">
+                <input type="file" id="file1" accept="image/*">
+            </div>
+            <div class="input-group">
+                <label for="code2">Vlož kód druhého produktu:</label>
+                <input type="text" id="code2" placeholder="Např. LGSU018">
+                <input type="file" id="file2" accept="image/*">
+            </div>
         </div>
         <button onclick="mergeImages()">Sloučit obrázky</button>
         <br>
-        <img id="result-image" alt="Merged Image" style="display: none;">
+        <img id="result-image" alt="Merged Image">
     </div>
     <script src="script.js"></script>
 </body>
