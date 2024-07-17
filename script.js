@@ -56,7 +56,7 @@ async function trimImage(img) {
 async function loadImageOrFile(code, file) {
     return new Promise((resolve, reject) => {
         if (code) {
-            const url = `https://image.alza.cz/products/${code}/${code}.jpg?width=500&height=500`;
+            const url = `https://image.alza.cz/products/${code}/${code}.jpg`;
             const img = new Image();
             img.crossOrigin = 'Anonymous';
             img.onload = async () => {
